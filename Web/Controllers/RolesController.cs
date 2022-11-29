@@ -4,7 +4,7 @@ namespace Web.Controllers
 {
     public class RolesController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Roles()
         {
             return View();
         }

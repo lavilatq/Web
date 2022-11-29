@@ -4,7 +4,7 @@ namespace Web.Controllers
 {
     public class ServiciosController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Servicios()
         {
             return View();
         }

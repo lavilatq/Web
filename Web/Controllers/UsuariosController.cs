@@ -4,7 +4,7 @@ namespace Web.Controllers
 {
     public class UsuariosController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Usuarios()
         {
             return View();
         }
