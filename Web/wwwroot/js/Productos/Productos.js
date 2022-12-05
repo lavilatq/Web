@@ -6,11 +6,33 @@
         },
         columns: [
             { data: 'id', title: 'ID' },
+            {
+                data: 'imagen', render: function (data) {
+                    if (data != null) {
+                        return '<img src="data:image/jpeg;base64,' + data + '"width=100px" height="100px">';
+                    } else {
+                        return '<img src="/images/inotfound.jpg" "width=100px" height="100px">';
+                    }
+                }, title: 'Imagen'
+            },
             { data: 'descripcion', title: 'Descripcion' },
             { data: 'precio', title: 'Precio' },
             { data: 'stock', title: 'Stock' },
-            { data: 'imagen', title: 'Imagen' },
-            { data: 'activo', title: 'Activo' }
+            {
+                data: function (data)
+                {
+                    return data.activo == true ? "SI" : "NO";
+                }, title: 'Activo'
+            },
+            {
+                data: function (data)
+                {
+                    var botones =
+                        `<td><a href='javascript:EditarProducto(${JSON.stringify(data)})'><i class="fa-solid fa-paw editarProducto"></i></td>` +
+                        `<td><a href='javascript:EliminarProducto(${JSON.stringify(data)})'><i class="fa-solid fa-dog eliminarProducto"></i></td>`
+                    return botones;
+                }
+            }
         ],
         language: {
             "processing": "Procesando...",
@@ -256,3 +278,55 @@
         },
     });
 });
+
+function GuardarProducto()
+{
+    $("#productosAddPartial").html("");
+
+    $.ajax({
+        type: "GET",
+        url: "/Productos/ProductosAddPartial",
+        data: "",
+        contentType: "application/json",
+        dataType: "html",
+        success: function (resultado)
+        {
+            $("#productosAddPartial").html(resultado);
+            $("#productoModal").modal('show');
+        }
+    });
+}
+
+function EditarProducto(data)
+{
+    $("#productosAddPartial").html("");
+
+    $.ajax({
+        type: "POST",
+        url: "/Productos/ProductosAddPartial",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        dataType: "html",
+        success: function (resultado)
+        {
+            $("#productosAddPartial").html(resultado);
+            $("#productoModal").modal('show');
+        }
+    });
+}
+
+function EliminarProducto(data) {
+    $("#productosAddPartial").html("");
+
+    $.ajax({
+        type: "POST",
+        url: "/Productos/ProductosAddPartial",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        dataType: "html",
+        success: function (resultado) {
+            $("#productosAddPartial").html(resultado);
+            $("#productoModal").modal('show');
+        }
+    });
+}
