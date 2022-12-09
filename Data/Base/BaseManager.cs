@@ -27,7 +27,7 @@ namespace Data.Base
         #region Metodos Abstractos
         public abstract Task<List<T>> BuscarLista();
         public abstract Task<List<T>> Buscar();
-        public abstract Task<List<bool>> Eliminar(T modelo);
+        public abstract Task<bool> Eliminar(T modelo);
         #endregion
 
         #region Metodos Publicos

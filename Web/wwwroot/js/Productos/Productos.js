@@ -1,5 +1,7 @@
-﻿$(document).ready(function () {
-    $('#productos').DataTable({
+﻿var tablaProductos;
+
+$(document).ready(function () {
+    tablaProductos = $('#productos').DataTable({
         ajax: {
             url: 'https://localhost:7025/api/Productos/BuscarProductos',
             dataSrc: ""
@@ -18,12 +20,12 @@
             { data: 'descripcion', title: 'Descripcion' },
             { data: 'precio', title: 'Precio' },
             { data: 'stock', title: 'Stock' },
-            {
+            /*{
                 data: function (data)
                 {
                     return data.activo == true ? "SI" : "NO";
                 }, title: 'Activo'
-            },
+            },*/
             {
                 data: function (data)
                 {
@@ -315,18 +317,35 @@ function EditarProducto(data)
     });
 }
 
-function EliminarProducto(data) {
-    $("#productosAddPartial").html("");
+function EliminarProducto(data)
+{
+    Swal.fire({
+        title: 'Segurisimo?',
+        text: "Mira que se va y no vuelve este producto...",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'SI! Borrar!!!',
+        cancelButtonText: 'Uy! no, mejor no'
+    }).then((result) => {
+        if (result.isConfirmed) {
 
-    $.ajax({
-        type: "POST",
-        url: "/Productos/ProductosAddPartial",
-        data: JSON.stringify(data),
-        contentType: "application/json",
-        dataType: "html",
-        success: function (resultado) {
-            $("#productosAddPartial").html(resultado);
-            $("#productoModal").modal('show');
+            $.ajax({
+                type: "POST",
+                url: "/Productos/EliminarProducto",
+                data: JSON.stringify(data),
+                contentType: "application/json",
+                dataType: "html",
+                success: function (resultado) {
+                    Swal.fire(
+                        'Bye bye!',
+                        'Se elimino el producto.',
+                        'success'
+                    )
+                    tablaProductos.ajax.reload();
+                }
+            });
         }
-    });
+    })
 }

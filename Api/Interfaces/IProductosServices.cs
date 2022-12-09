@@ -6,8 +6,8 @@ namespace Api.Interfaces
     {
         Task<List<Productos>> BuscarLista();
 
-        Task<List<Productos>> Guardar(Productos productos);
+        Task<bool> Guardar(Productos productos);
 
-        Task<List<Productos>> Eliminar(Productos producto);
+        Task<bool> Eliminar(Productos productos);
     }
 }

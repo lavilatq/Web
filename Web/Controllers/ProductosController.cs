@@ -11,7 +11,12 @@ namespace Web.Controllers
     {
         private readonly IHttpClientFactory _httpClient;
 
-        public ProductosController(IHttpClientFactory httpClient) => _httpClient = httpClient;
+        //public ProductosController(IHttpClientFactory httpClient) => _httpClient = httpClient;
+
+        public ProductosController(IHttpClientFactory httpClient)
+        {
+            _httpClient = httpClient;
+        }
 
         public IActionResult Productos()
         {
@@ -45,6 +50,12 @@ namespace Web.Controllers
             }
             producto.Imagen_archivo = null;
             var productos = baseApi.PostApi("Productos/GuardarProducto", producto, "");
+            return View("~/Views/Productos/Productos.cshtml");
+        }
+        public IActionResult EliminarProducto([FromBody]Productos producto)
+        {
+            var baseApi = new BaseApi(_httpClient);
+            var productos = baseApi.PostApi("Productos/EliminarProducto", producto, "");
             return View("~/Views/Productos/Productos.cshtml");
         }
     }

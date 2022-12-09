@@ -10,37 +10,30 @@
             {
                 <div Class="modal-body">
 
-                        @Html.HiddenFor(x=> x.Id)
-                        @Html.HiddenFor(x=> x.Imagen)
+                    @Html.HiddenFor(x=> x.Id)
+                    @Html.HiddenFor(x=> x.Imagen)
 
-                        <div class="row">
-                            <div class="col-md-6 mt-1 mb-3">
-                                <label class="col-md-3 form-control-label">Imagen</label>
-                                @Html.EditorFor(x=> x.Imagen_archivo, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
-                            </div>
-                            <div class="col-md-6 mt-1 mb-3">
-                                <label class="col-md-3 form-control-label">Descripcion</label>
-                                @Html.EditorFor(x=> x.Descripcion, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
-                            </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-1 mb-3">
+                            <label class="col-md-3 form-control-label">Imagen</label>
+                            @Html.EditorFor(x=> x.Imagen_archivo, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
                         </div>
+                        <div class="col-md-6 mt-1 mb-3">
+                            <label class="col-md-3 form-control-label">Descripcion</label>
+                            @Html.EditorFor(x=> x.Descripcion, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
+                        </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mt-1 mb-3">
-                                <label class="col-md-3 form-control-label">Precio</label>
-                            @Html.EditorFor(x=> x.Precio, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
-                            </div>
-                            <div class="col-md-6 mt-1 mb-3">
-                                <label class="col-md-3 form-control-label">Stock</label>
-                                @Html.EditorFor(x=> x.Stock, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
-                            </div>
+                    <div class="row">
+                        <div class="col-md-6 mt-1 mb-3">
+                            <label class="col-md-3 form-control-label">Precio</label>
+                        @Html.EditorFor(x=> x.Precio, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-6 mt-1 mb-3">
-                                <label class="col-md-2 form-control-label">Activo</label>
-                            @Html.EditorFor(x=> x.Activo, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
-                            </div>
+                        <div class="col-md-6 mt-1 mb-3">
+                            <label class="col-md-3 form-control-label">Stock</label>
+                            @Html.EditorFor(x=> x.Stock, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
                         </div>
+                    </div>
                 </div>
                 
                 <div Class="modal-footer">
