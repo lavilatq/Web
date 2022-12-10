@@ -17,7 +17,7 @@ $(document).ready(function () {
                 }, title: 'Fecha de Nacimiento'
             },
             { data: 'email', title: 'E-Mail' },
-            { data: 'id_Rol', title: 'ID Rol' },
+            { data: 'roles.nombre', title: 'Rol' },
             {
                 data: function (data)
                 {
