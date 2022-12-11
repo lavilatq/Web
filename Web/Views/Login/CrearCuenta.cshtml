@@ -12,9 +12,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/css/login/login.css" rel="stylesheet" />
+
+	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/css/login/login.css" rel="stylesheet" />
 
 </head>
 <body class="img js-fullheight" style="background-image: url(/images/login.jpg);">
@@ -34,40 +34,36 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 						<h3 class="mb-4 text-center">Tienes una cuenta?</h3>
-						<form action="Login/Ingresar" class="signin-form">
+						<form action="CrearUsuario" class="signin-form">
 							<div class="form-group">
-								<input type="email" class="form-control" placeholder="Usuario" name="Email" required>
+								<input type="text" class="form-control" placeholder="Ingrese el nombre" name="Nombre" required>
 							</div>
 							<div class="form-group">
-								<input id="password-field" type="password" class="form-control" placeholder="Password" name="Clave" required>
-								<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+								<input type="text" class="form-control" placeholder="Ingrese el apellido" name="Apellido" required>
 							</div>
 							<div class="form-group">
-								<button type="submit" class="form-control btn btn-primary submit px-3">MIAU!</button>
+								<input type="date" class="form-control" placeholder="Ingrese la fecha de nacimiento" name="Fecha_Nacimiento" required>
 							</div>
-							<div class="form-group d-md-flex">
-								<div class="w-50 text-md-left">
-									<a asp-controller="Login" asp-action="CrearCuenta" style="color: #fff">Crear cuenta</a>
-								</div>
-								<div class="w-50 text-md-right">
-									<a href="#" style="color: #fff">Oh... me olvide todo</a>
-								</div>
+							<div class="form-group">
+								<input type="email" class="form-control" placeholder="Ingrese el E-Mail" name="Email" required>
+							</div>
+							<div class="form-group">
+								<input id="password-field" type="password" class="form-control" placeholder="Ingrese la contraseña" name="Clave" required>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="form-control btn btn-primary submit px-3">Crear Cuenta</button>
 							</div>
 						</form>
-						<p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-						<div class="social d-flex text-center">
-							<a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-google mr-2"></span> Google</a>
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="js/popper.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link href="~/css/login/login.css" rel="stylesheet" />
+	<link href="~/css/login/login.css" rel="stylesheet" />
 
 </body>
 </html>

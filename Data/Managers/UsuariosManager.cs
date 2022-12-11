@@ -22,7 +22,13 @@ namespace Data.Managers
             return respuesta;
         }
 
-        public override async Task<bool> Eliminar(Usuarios modelo)
+		public async Task<Usuarios> BuscarUsuarioRepetido(Usuarios modelo)
+		{
+			var respuesta = contextoSingleton.Usuarios.FirstOrDefault((x => x.Email == modelo.Email));
+			return respuesta;
+		}
+
+		public override async Task<bool> Eliminar(Usuarios modelo)
         {
 
             contextoSingleton.Entry(modelo).State = EntityState.Modified;

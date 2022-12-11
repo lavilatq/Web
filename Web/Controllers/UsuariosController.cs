@@ -1,5 +1,6 @@
 ﻿using Data.Base;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -15,11 +16,15 @@ namespace Web.Controllers
         {
             _httpClient = httpClient;
         }
-        public IActionResult Usuarios()
+
+		[Authorize(Policy = "ADMINISTRADORES")]
+		public IActionResult Usuarios()
         {
             return View();
         }
-        public async Task<IActionResult> UsuariosAddPartial([FromBody] Usuarios usuarios)
+
+		[Authorize(Roles = "Administrador")]
+		public async Task<IActionResult> UsuariosAddPartial([FromBody] Usuarios usuarios)
         {
             var baseApi = new BaseApi(_httpClient);
             var roles = await baseApi.GetToApi("Roles/BuscarRoles", "");
@@ -47,13 +52,13 @@ namespace Web.Controllers
         public IActionResult GuardarUsuario(Usuarios usuario)
         {
             var baseApi = new BaseApi(_httpClient);
-            var usuarios = baseApi.PostApi("Usuarios/GuardarUsuario", usuario, "");
+            var usuarios = baseApi.PostToApi("Usuarios/GuardarUsuario", usuario, "");
             return View("~/Views/Usuarios/Usuarios.cshtml");
         }
         public IActionResult EliminarUsuario([FromBody] Usuarios usuario)
         {
             var baseApi = new BaseApi(_httpClient);
-            var usuarios = baseApi.PostApi("Usuarios/EliminarUsuario", usuario, "");
+            var usuarios = baseApi.PostToApi("Usuarios/EliminarUsuario", usuario, "");
             return View("~/Views/Usuarios/Usuarios.cshtml");
         }
     }

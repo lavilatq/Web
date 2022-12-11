@@ -18,7 +18,7 @@ namespace Data.Base
             _httpClient= httpClient;
         }
 
-        public async Task<IActionResult> PostApi(string ControllerName, object model, string token)
+        public async Task<IActionResult> PostToApi(string ControllerName, object model, string token)
         {
             try
             {

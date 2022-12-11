@@ -1,5 +1,6 @@
 ﻿using Data.Base;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using Web.ViewModels;
@@ -15,7 +16,8 @@ namespace Web.Controllers
             _httpClient = httpClient;
         }
 
-        public IActionResult Roles()
+		[Authorize]
+		public IActionResult Roles()
         {
             return View();
         }
@@ -35,13 +37,13 @@ namespace Web.Controllers
         {
             var baseApi = new BaseApi(_httpClient);
 
-            var Roles = baseApi.PostApi("Roles/GuardarRol", Rol, "");
+            var Roles = baseApi.PostToApi("Roles/GuardarRol", Rol, "");
             return View("~/Views/Roles/Roles.cshtml");
         }
         public IActionResult EliminarRol([FromBody] Roles Rol)
         {
             var baseApi = new BaseApi(_httpClient);
-            var Roles = baseApi.PostApi("Roles/EliminarRol", Rol, "");
+            var Roles = baseApi.PostToApi("Roles/EliminarRol", Rol, "");
             return View("~/Views/Roles/Roles.cshtml");
         }
     }

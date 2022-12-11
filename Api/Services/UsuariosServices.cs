@@ -36,7 +36,15 @@ namespace Api.Services
         {
             try
             {
+                var usuarioRepetido = _manager.BuscarUsuarioRepetido(usuario);
+
+                if(usuarioRepetido.Result != null)
+                {
+                    return false;
+
+                }
                 usuario.Activo = true;
+                usuario.Clave = EncryptHelper.Entriptar(usuario.Clave);
                 return await _manager.Guardar(usuario, usuario.Id);
             }
             catch (Exception ex)

@@ -29,20 +29,13 @@
                             @Html.EditorFor(x=> x.Fecha_Nacimiento, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
                         </div>
                         <div class="col-md-6 mt-1 mb-3">
-                            <label class="col-md-3 form-control-label">E-Mail</label>
-                            @Html.EditorFor(x=> x.Email, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mt-1 mb-3">
-                            <label class="col-md-3 form-control-label">Rol</label>
+                            <label class="col-md-2 form-control-label">Rol</label>
                             <select name="Id_Rol" id="Id_Rol" required class="col-md-9 form-control">
                                 <option value="">Seleccione...</option>
                                 @{
                                     foreach (var item in Model.Lista_Roles)
                                     {
-                                        if(Model.Id_Rol != null && item.Value == Model.Id_Rol.ToString())
+                                        if (Model.Id_Rol != null && item.Value == Model.Id_Rol.ToString())
                                         {
                                             <option value=@item.Value selected>@item.Text</option>
                                         }
@@ -50,12 +43,26 @@
                                         {
                                             <option value=@item.Value>@item.Text</option>
                                         }
-
                                     }
                                 }
                             </select>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mt-1 mb-3">
+                            <label class="col-md-3 form-control-label">E-Mail</label>
+                            @Html.EditorFor(x=> x.Email, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mt-1 mb-3">
+                            <label class="col-md-3 form-control-label">Password</label>
+                            @Html.EditorFor(x=> x.Clave, new{AddHtmlAttributeValue= new {@class = "col-md8 form-control"}})
+                        </div>
+                    </div>
+
                 </div>
 
                 <div Class="modal-footer">

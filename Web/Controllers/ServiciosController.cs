@@ -1,5 +1,6 @@
 ﻿using Data.Base;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Buffers.Text;
 using System.Net.Http;
@@ -18,7 +19,8 @@ namespace Web.Controllers
             _httpClient = httpClient;
         }
 
-        public IActionResult Servicios()
+		[Authorize]
+		public IActionResult Servicios()
         {
             return View();
         }
@@ -37,13 +39,13 @@ namespace Web.Controllers
         public IActionResult GuardarServicio(Servicios servicio)
         {
             var baseApi = new BaseApi(_httpClient);
-            var servicios = baseApi.PostApi("Servicios/GuardarServicio", servicio, "");
+            var servicios = baseApi.PostToApi("Servicios/GuardarServicio", servicio, "");
             return View("~/Views/Servicios/Servicios.cshtml");
         }
         public IActionResult EliminarServicio([FromBody] Servicios servicio)
         {
             var baseApi = new BaseApi(_httpClient);
-            var servicios = baseApi.PostApi("Servicios/EliminarServicio", servicio, "");
+            var servicios = baseApi.PostToApi("Servicios/EliminarServicio", servicio, "");
             return View("~/Views/Servicios/Servicios.cshtml");
         }
     }

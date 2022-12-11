@@ -1,5 +1,6 @@
 ﻿using Data.Base;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Buffers.Text;
 using System.Net.Http;
@@ -18,7 +19,8 @@ namespace Web.Controllers
             _httpClient = httpClient;
         }
 
-        public IActionResult Productos()
+		[Authorize]
+		public IActionResult Productos()
         {
             return View();
         }
@@ -49,13 +51,13 @@ namespace Web.Controllers
                 }
             }
             producto.Imagen_archivo = null;
-            var productos = baseApi.PostApi("Productos/GuardarProducto", producto, "");
+            var productos = baseApi.PostToApi("Productos/GuardarProducto", producto, "");
             return View("~/Views/Productos/Productos.cshtml");
         }
         public IActionResult EliminarProducto([FromBody]Productos producto)
         {
             var baseApi = new BaseApi(_httpClient);
-            var productos = baseApi.PostApi("Productos/EliminarProducto", producto, "");
+            var productos = baseApi.PostToApi("Productos/EliminarProducto", producto, "");
             return View("~/Views/Productos/Productos.cshtml");
         }
     }
